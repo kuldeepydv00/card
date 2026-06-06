@@ -10,6 +10,9 @@ const webhookRoutes = require('./routes/webhook');
 
 const app = express();
 
+// Trust reverse proxy (needed for Render + express-rate-limit)
+app.set('trust proxy', 1);
+
 // Middlewares
 app.use(helmet());
 app.use(cors({ 
