@@ -1,11 +1,6 @@
-const { Resend } = require('resend');
-
-// Initialize Resend with API key from environment
-const resend = new Resend(process.env.RESEND_API_KEY);
-
 const sendOtpEmail = async (email, otp) => {
-  // For local development without Resend key, just log it
-  if (!process.env.RESEND_API_KEY) {
+  // For local development without Brevo key, just log it
+  if (!process.env.BREVO_API_KEY) {
     console.log(`\n============================`);
     console.log(`[DEVELOPMENT] OTP for ${email}: ${otp}`);
     console.log(`============================\n`);
@@ -13,19 +8,32 @@ const sendOtpEmail = async (email, otp) => {
   }
 
   try {
-    const { data, error } = await resend.emails.send({
-      from: "Card Game <onboarding@resend.dev>", // Required for testing domains
-      to: email,
-      subject: "Your Signup Verification OTP",
-      html: `<b>Your OTP is: ${otp}</b><br/>It is valid for 5 minutes.`,
+    const response = await fetch('https://api.brevo.com/v3/smtp/email', {
+      method: 'POST',
+      headers: {
+        'accept': 'application/json',
+        'api-key': process.env.BREVO_API_KEY,
+        'content-type': 'application/json'
+      },
+      body: JSON.stringify({
+        sender: {
+          email: process.env.SMTP_FROM || "kuldeepyadav200507@gmail.com",
+          name: "Card Game Admin"
+        },
+        to: [{ email: email }],
+        subject: "Your Signup Verification OTP",
+        htmlContent: `<b>Your OTP is: ${otp}</b><br/>It is valid for 5 minutes.`
+      })
     });
 
-    if (error) {
-      console.error("Resend API Error:", error);
+    if (!response.ok) {
+      const errorData = await response.text();
+      console.error("Brevo API Error:", errorData);
       return false;
     }
 
-    console.log("Message sent:", data.id);
+    const data = await response.json();
+    console.log("Message sent via Brevo:", data.messageId);
     return true;
   } catch (error) {
     console.error("Error sending email:", error);
