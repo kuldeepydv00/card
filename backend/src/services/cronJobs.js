@@ -2,10 +2,11 @@ const cron = require('node-cron');
 const { processHourlyResult } = require('./resultProcessor');
 const logger = require('../utils/logger');
 const { getIo } = require('../config/socket');
+const { getPreviousSlot } = require('../utils/timeUtils');
 
 const initCronJobs = () => {
-  // Every hour at :00
-  cron.schedule('0 * * * *', async () => {
+  // Every hour at :30 UTC (which is :00 in IST)
+  cron.schedule('30 * * * *', async () => {
     logger.info('Running hourly result processor cron...');
     try {
       const Setting = require('../models/Setting');
@@ -17,9 +18,7 @@ const initCronJobs = () => {
         return;
       }
 
-      const now = new Date();
-      const previousHour = new Date(now);
-      previousHour.setHours(previousHour.getHours() - 1, 0, 0, 0);
+      const previousHour = getPreviousSlot(new Date());
       
       const result = await processHourlyResult(previousHour);
       
@@ -37,8 +36,8 @@ const initCronJobs = () => {
     }
   });
 
-  // Fallback Cron at :10 for manual mode
-  cron.schedule('10 * * * *', async () => {
+  // Fallback Cron at :40 UTC (which is :10 in IST) for manual mode
+  cron.schedule('40 * * * *', async () => {
     logger.info('Running manual mode fallback check...');
     try {
       const Setting = require('../models/Setting');
@@ -47,9 +46,7 @@ const initCronJobs = () => {
 
       if (gameMode !== 'manual') return;
 
-      const now = new Date();
-      const previousHour = new Date(now);
-      previousHour.setHours(previousHour.getHours() - 1, 0, 0, 0);
+      const previousHour = getPreviousSlot(new Date());
       
       const HourlyResult = require('../models/HourlyResult');
       const existingResult = await HourlyResult.findOne({ hour_slot: previousHour });

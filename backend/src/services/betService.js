@@ -2,6 +2,7 @@ const Bet = require('../models/Bet');
 const Setting = require('../models/Setting');
 const { updateBalance } = require('./walletService');
 const mongoose = require('mongoose');
+const { getCurrentSlot } = require('../utils/timeUtils');
 
 const placeBet = async (userId, cardCode, betAmount) => {
   const session = await mongoose.startSession();
@@ -10,14 +11,12 @@ const placeBet = async (userId, cardCode, betAmount) => {
   try {
     console.log('Placing bet for user:', userId, 'card:', cardCode, 'amount:', betAmount);
     const now = new Date();
-    const startOfHour = new Date(now);
-    startOfHour.setMinutes(0, 0, 0);
-    console.log('Start of hour:', startOfHour);
+    const startOfHour = getCurrentSlot(now);
+    console.log('Start of IST hour slot (in UTC):', startOfHour);
 
-    // Check betting window
+    // Check betting window relative to the slot start
     const bettingCloseMinute = (await Setting.findOne({ key: 'betting_close_minute' }))?.value || 50;
-    const closingTime = new Date(startOfHour);
-    closingTime.setMinutes(bettingCloseMinute);
+    const closingTime = new Date(startOfHour.getTime() + (bettingCloseMinute * 60000));
 
     if (now > closingTime) {
       const err = new Error('Betting closed for this hour');
@@ -70,16 +69,23 @@ const placeBet = async (userId, cardCode, betAmount) => {
   }
 };
 
+const getActiveBets = async () => {
+  const now = new Date();
+  const startOfHour = getCurrentSlot(now);
+  
+  return await Bet.aggregate([
+    { $match: { hour_slot: startOfHour, status: 'pending' } }
+  ]);
+};
+
 const placeBetWithoutSession = async (userId, cardCode, betAmount) => {
   try {
     const now = new Date();
-    const startOfHour = new Date(now);
-    startOfHour.setMinutes(0, 0, 0);
+    const startOfHour = getCurrentSlot(now);
 
     // Check betting window
     const bettingCloseMinute = (await Setting.findOne({ key: 'betting_close_minute' }))?.value || 50;
-    const closingTime = new Date(startOfHour);
-    closingTime.setMinutes(bettingCloseMinute);
+    const closingTime = new Date(startOfHour.getTime() + (bettingCloseMinute * 60000));
 
     if (now > closingTime) {
       const err = new Error('Betting closed for this hour');

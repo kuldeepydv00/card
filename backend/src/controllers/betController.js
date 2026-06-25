@@ -39,10 +39,11 @@ const placeBet = async (req, res) => {
   }
 };
 
+const { getCurrentSlot } = require('../utils/timeUtils');
+
 const getUserCurrentBets = async (req, res) => {
   try {
-    const startOfHour = new Date();
-    startOfHour.setMinutes(0, 0, 0, 0);
+    const startOfHour = getCurrentSlot(new Date());
 
     const bets = await Bet.find({
       user_id: req.user.id,

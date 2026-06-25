@@ -278,8 +278,7 @@ const overrideResult = async (req, res) => {
     const bettingCloseMinute = (await Setting.findOne({ key: 'betting_close_minute' }))?.value || 50;
     
     // Window opens at hourSlot + bettingCloseMinute
-    const windowStart = new Date(slotDate);
-    windowStart.setMinutes(parseInt(bettingCloseMinute));
+    const windowStart = new Date(slotDate.getTime() + (parseInt(bettingCloseMinute) * 60000));
 
     if (now < windowStart) {
       return res.status(403).json({ error: 'Manual declaration window has not opened yet (betting still active)' });
