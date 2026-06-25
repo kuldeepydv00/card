@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Helmet } from 'react-helmet-async';
 import { useAuth } from '../context/AuthContext';
 import api from '../services/api';
 import Navbar from '../components/common/Navbar';
@@ -57,7 +58,12 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background text-white font-sans selection:bg-primary/30">
+      <Helmet>
+        <title>Arena | Elite Cards</title>
+        <meta name="description" content="Place your bets in the live Arena. Real-time multiplayer card betting." />
+        <link rel="canonical" href="https://elitecards.com/" />
+      </Helmet>
       <Navbar />
       
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">

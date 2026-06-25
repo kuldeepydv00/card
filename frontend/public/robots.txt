@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /admin
+Disallow: /wallet
+
+Sitemap: https://elitecards.com/sitemap.xml

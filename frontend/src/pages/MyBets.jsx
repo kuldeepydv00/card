@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Helmet } from 'react-helmet-async';
 import api from '../services/api';
 import Navbar from '../components/common/Navbar';
 import { History, ChevronLeft, ChevronRight, Filter, Trophy, Clock, Target } from 'lucide-react';
@@ -30,6 +31,10 @@ const MyBets = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <Helmet>
+        <title>My Bets | Elite Cards</title>
+        <meta name="robots" content="noindex" />
+      </Helmet>
       <Navbar />
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <motion.div 

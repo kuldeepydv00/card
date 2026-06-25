@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Helmet } from 'react-helmet-async';
 import api from '../services/api';
 import Navbar from '../components/common/Navbar';
 import { History, Trophy, Clock, TrendingUp, ChevronLeft } from 'lucide-react';
@@ -26,6 +27,11 @@ const ResultsHistory = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <Helmet>
+        <title>Last Results | Elite Cards</title>
+        <meta name="description" content="View the historical results of the Elite Cards arena. Track winning cards and pool volumes." />
+        <link rel="canonical" href="https://elitecards.com/history" />
+      </Helmet>
       <Navbar />
       
       <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
