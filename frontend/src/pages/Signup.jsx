@@ -139,7 +139,7 @@ const Signup = () => {
                 transition={{ delay: 0.3 }}
                 className="text-4xl font-extrabold mb-4 premium-gradient-text"
               >
-                Join the Elite Arena
+                Join the 50xcards Arena
               </motion.h2>
               <motion.p 
                 initial={{ opacity: 0, y: 10 }}

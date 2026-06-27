@@ -35,10 +35,10 @@ const Navbar = () => {
           <div className="flex items-center gap-10">
             <Link to="/" className="flex items-center gap-3 group">
               <div className="w-8 h-8 md:w-10 md:h-10 bg-gradient-to-tr from-primary to-secondary rounded-xl flex items-center justify-center font-black text-white shadow-lg shadow-primary/30 group-hover:scale-110 transition-transform">
-                G
+                50x
               </div>
               <span className="text-xl md:text-2xl font-black tracking-tight bg-gradient-to-r from-white to-white/60 bg-clip-text text-transparent">
-                ELITE<span className="text-primary">CARDS</span>
+                50x<span className="text-primary">cards</span>
               </span>
             </Link>
 

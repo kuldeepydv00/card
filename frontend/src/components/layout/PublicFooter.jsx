@@ -9,7 +9,7 @@ const PublicFooter = () => {
           <div className="col-span-2 lg:col-span-1">
             <Link to="/" className="flex items-center gap-2 mb-6">
               <div className="w-10 h-10 bg-gradient-to-br from-primary to-secondary rounded-xl flex items-center justify-center font-black text-xl text-white shadow-lg shadow-primary/20">
-                50
+                50x
               </div>
               <span className="font-black text-xl tracking-tight text-white">
                 50x<span className="text-primary">cards</span>

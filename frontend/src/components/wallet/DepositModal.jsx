@@ -89,7 +89,7 @@ const DepositModal = ({ onClose, onSuccess }) => {
         key: import.meta.env.VITE_RAZORPAY_KEY_ID,
         amount: order.amount,
         currency: order.currency,
-        name: "ELITE CARDS",
+        name: "50xcards",
         description: "Wallet Credit Inbound",
         order_id: order.id,
         handler: function (response) {

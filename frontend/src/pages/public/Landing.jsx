@@ -41,7 +41,7 @@ const Landing = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
           <Link to="/" className="flex items-center gap-3">
             <div className="w-12 h-12 bg-gradient-to-br from-primary to-secondary rounded-2xl flex items-center justify-center font-black text-2xl text-white shadow-lg shadow-primary/20">
-              50
+              50x
             </div>
             <span className="font-black text-2xl tracking-tight hidden sm:block">
               50x<span className="text-primary">cards</span>

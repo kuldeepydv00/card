@@ -28,9 +28,9 @@ const ResultsHistory = () => {
   return (
     <div className="min-h-screen bg-background">
       <Helmet>
-        <title>Last Results | Elite Cards</title>
-        <meta name="description" content="View the historical results of the Elite Cards arena. Track winning cards and pool volumes." />
-        <link rel="canonical" href="https://elitecards.com/history" />
+        <title>Last Results | 50xcards</title>
+        <meta name="description" content="View the historical results of the 50xcards arena. Track winning cards and pool volumes." />
+        <link rel="canonical" href="https://50xcards.in/history" />
       </Helmet>
       <Navbar />
       

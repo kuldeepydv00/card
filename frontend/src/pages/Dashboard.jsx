@@ -60,9 +60,9 @@ const Dashboard = () => {
   return (
     <div className="min-h-screen bg-background text-white font-sans selection:bg-primary/30">
       <Helmet>
-        <title>Arena | Elite Cards</title>
+        <title>Arena | 50xcards</title>
         <meta name="description" content="Place your bets in the live Arena. Real-time multiplayer card betting." />
-        <link rel="canonical" href="https://elitecards.com/" />
+        <link rel="canonical" href="https://50xcards.in/" />
       </Helmet>
       <Navbar />
       

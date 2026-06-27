@@ -165,7 +165,7 @@ const Login = () => {
                   <Sparkles size={12} />
                   Live Support
                 </p>
-                <p className="text-sm text-gray-300">Available 24/7 for all elite members. We're here to help you win.</p>
+                <p className="text-sm text-gray-300">Available 24/7 for all 50xcards members. We're here to help you win.</p>
               </div>
             </motion.div>
           </div>

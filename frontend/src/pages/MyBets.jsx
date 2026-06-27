@@ -32,7 +32,7 @@ const MyBets = () => {
   return (
     <div className="min-h-screen bg-background">
       <Helmet>
-        <title>My Bets | Elite Cards</title>
+        <title>My Bets | 50xcards</title>
         <meta name="robots" content="noindex" />
       </Helmet>
       <Navbar />
