@@ -18,7 +18,7 @@ const Navbar = () => {
   if (!user) return null;
 
   const navItems = [
-    { label: 'Game', path: '/', icon: LayoutDashboard },
+    { label: 'Game', path: '/arena', icon: LayoutDashboard },
     { label: 'History', path: '/my-bets', icon: History },
     { label: 'Last Result', path: '/results', icon: Trophy },
     { label: 'Wallet', path: '/wallet', icon: Wallet },
@@ -33,7 +33,7 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full">
         <div className="flex justify-between items-center h-full">
           <div className="flex items-center gap-10">
-            <Link to="/" className="flex items-center gap-3 group">
+            <Link to="/arena" className="flex items-center gap-3 group">
               <div className="w-8 h-8 md:w-10 md:h-10 bg-gradient-to-tr from-primary to-secondary rounded-xl flex items-center justify-center font-black text-white shadow-lg shadow-primary/30 group-hover:scale-110 transition-transform">
                 50x
               </div>
