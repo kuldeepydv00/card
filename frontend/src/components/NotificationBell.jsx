@@ -20,8 +20,8 @@ const NotificationBell = () => {
 
   const getIcon = (notification) => {
     if (notification.type === 'win') return <BellRing size={20} className="text-yellow-400" />;
-    if (notification.type === 'deposit') return notification.title.includes('Approved') ? <CheckCircle size={20} className="text-green-400" /> : <Info size={20} className="text-blue-400" />;
-    if (notification.type === 'withdrawal') return notification.title.includes('Approved') ? <CheckCircle size={20} className="text-green-400" /> : notification.title.includes('Rejected') ? <XCircle size={20} className="text-red-400" /> : <Info size={20} className="text-blue-400" />;
+    if (notification.type === 'deposit') return notification.title?.includes('Approved') ? <CheckCircle size={20} className="text-green-400" /> : <Info size={20} className="text-blue-400" />;
+    if (notification.type === 'withdrawal') return notification.title?.includes('Approved') ? <CheckCircle size={20} className="text-green-400" /> : notification.title?.includes('Rejected') ? <XCircle size={20} className="text-red-400" /> : <Info size={20} className="text-blue-400" />;
     return <Info size={20} className="text-gray-400" />;
   };
 
@@ -48,7 +48,7 @@ const NotificationBell = () => {
   return (
     <div className="relative" ref={dropdownRef}>
       <button 
-        onClick={() => setIsOpen(!isOpen)}
+        onClick={(e) => { e.stopPropagation(); setIsOpen(!isOpen); }}
         className="p-2 bg-white/5 hover:bg-white/10 rounded-full transition-colors relative"
       >
         <Bell size={20} className="text-gray-300" />
@@ -60,6 +60,7 @@ const NotificationBell = () => {
       <AnimatePresence>
         {isOpen && (
           <motion.div
+            key="notification-dropdown"
             initial={{ opacity: 0, y: 10, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 10, scale: 0.95 }}
