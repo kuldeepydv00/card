@@ -1,12 +1,32 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Play, TrendingUp, ShieldCheck, ChevronDown, CheckCircle2, ChevronRight, Zap } from 'lucide-react';
+import { Play, TrendingUp, ShieldCheck, ChevronDown, CheckCircle2, ChevronRight, Zap, Download } from 'lucide-react';
 import PublicFooter from '../../components/layout/PublicFooter';
 
 const Landing = () => {
   const [openFaq, setOpenFaq] = useState(null);
+  const [deferredPrompt, setDeferredPrompt] = useState(null);
+
+  useEffect(() => {
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      setDeferredPrompt(e);
+    });
+  }, []);
+
+  const handleInstallClick = async () => {
+    if (deferredPrompt) {
+      deferredPrompt.prompt();
+      const { outcome } = await deferredPrompt.userChoice;
+      if (outcome === 'accepted') {
+        setDeferredPrompt(null);
+      }
+    } else {
+      alert("To install the Android App:\n\n1. Open this website in Chrome on your Android phone.\n2. Tap the 3-dots menu in the top right corner.\n3. Select 'Add to Home Screen' or 'Install App'.");
+    }
+  };
 
   const faqs = [
     {
@@ -73,13 +93,16 @@ const Landing = () => {
             <p className="text-xl text-gray-400 mb-10 max-w-2xl mx-auto font-medium">
               Join the ultimate card trading and multiplayer prediction game in India. Place wagers on your lucky cards and secure massive payouts.
             </p>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 flex-wrap">
               <Link to="/signup" className="w-full sm:w-auto bg-primary text-white text-lg font-black px-10 py-5 rounded-2xl transition-all shadow-xl shadow-primary/20 hover:scale-105 hover:bg-primary-hover flex items-center justify-center gap-3">
                 <Play size={20} fill="currentColor" /> Play Now
               </Link>
               <Link to="/login" className="w-full sm:w-auto bg-white/5 border border-white/10 text-white text-lg font-bold px-10 py-5 rounded-2xl transition-all hover:bg-white/10 flex items-center justify-center">
                 Sign In
               </Link>
+              <button onClick={handleInstallClick} className="w-full sm:w-auto bg-green-500/10 border border-green-500/20 text-green-400 text-lg font-bold px-10 py-5 rounded-2xl transition-all hover:bg-green-500/20 flex items-center justify-center gap-3">
+                <Download size={20} /> Download Android App
+              </button>
             </div>
           </motion.div>
         </div>

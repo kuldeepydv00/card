@@ -11,7 +11,18 @@
     <meta name="keywords" content="online card game, real money betting, multiplayer cards, casino games, card arena" />
     <meta name="google-site-verification" content="X5bx6kXkyJ3vFlMeuc7WeMOjQq-PKewqkBAdQ3K6t10" />
     
-    <!-- Open Graph / Facebook -->
+    <!-- PWA Settings -->
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#050B14" />
+    <link rel="apple-touch-icon" href="/icon.svg" />
+    
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js');
+        });
+      }
+    </script>
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://50xcards.in/" />
     <meta property="og:title" content="50xcards | Premium Online Card Betting" />
