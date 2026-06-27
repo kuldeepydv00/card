@@ -6,8 +6,15 @@ let io;
 const initSocket = (server) => {
   io = new Server(server, {
     cors: {
-      origin: process.env.NODE_ENV === 'development' ? true : process.env.CLIENT_URL,
-      methods: ['GET', 'POST']
+      origin: [
+        'https://50xcards.in',
+        'https://www.50xcards.in',
+        'https://card-rho-livid.vercel.app',
+        process.env.CLIENT_URL,
+        'http://localhost:5173'
+      ].filter(Boolean),
+      methods: ['GET', 'POST'],
+      credentials: true
     }
   });
 

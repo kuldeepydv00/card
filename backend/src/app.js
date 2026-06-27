@@ -15,8 +15,22 @@ app.set('trust proxy', 1);
 
 // Middlewares
 app.use(helmet());
+const allowedOrigins = [
+  'https://50xcards.in',
+  'https://www.50xcards.in',
+  'https://card-rho-livid.vercel.app',
+  process.env.CLIENT_URL,
+  'http://localhost:5173'
+].filter(Boolean);
+
 app.use(cors({ 
-  origin: process.env.NODE_ENV === 'development' ? true : process.env.CLIENT_URL,
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin) || process.env.NODE_ENV === 'development') {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
   credentials: true
 }));
 app.use(morgan('dev'));
