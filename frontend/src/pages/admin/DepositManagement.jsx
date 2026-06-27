@@ -51,20 +51,20 @@ const DepositManagement = () => {
 
   return (
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="space-y-6">
-      <div className="glass-card rounded-[2rem] p-6 flex justify-between items-center border-white/5">
+      <div className="glass-card rounded-[2rem] p-6 flex flex-col xl:flex-row justify-between items-start xl:items-center gap-6 border-white/5">
         <h2 className="text-xl font-black uppercase tracking-widest flex items-center gap-3">
           <ArrowDownToLine className="text-green-500" size={24} /> Manual Deposits
         </h2>
         
-        <div className="flex flex-col md:flex-row items-center gap-4">
-          <div className="flex bg-background border border-white/5 rounded-xl p-1">
+        <div className="flex flex-col xl:flex-row items-start xl:items-center gap-4 w-full xl:w-auto">
+          <div className="flex bg-background border border-white/5 rounded-xl p-1 w-full sm:w-auto">
             <input 
               type="text" 
               placeholder="Search user, email or phone..." 
               value={searchInput}
               onChange={(e) => setSearchInput(e.target.value)}
               onKeyDown={(e) => e.key === 'Enter' && setSearchQuery(searchInput)}
-              className="bg-transparent border-none outline-none px-4 text-sm text-white w-48 focus:w-64 transition-all"
+              className="bg-transparent border-none outline-none px-4 text-sm text-white w-full sm:w-48 sm:focus:w-64 transition-all"
             />
             <button 
               onClick={() => setSearchQuery(searchInput)}

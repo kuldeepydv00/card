@@ -23,18 +23,18 @@ const BetModal = ({ cardCode, onClose, onSubmit, balance }) => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 backdrop-blur-md p-4"
+      className="fixed inset-0 z-[100] flex items-start md:items-center justify-center bg-black/80 backdrop-blur-md p-4 overflow-y-auto"
     >
       <motion.div 
         initial={{ scale: 0.9, y: 20 }}
         animate={{ scale: 1, y: 0 }}
         exit={{ scale: 0.9, y: 20 }}
-        className="glass-card w-full max-w-lg p-10 rounded-[3rem] relative overflow-hidden"
+        className="glass-card w-full max-w-lg p-6 md:p-10 rounded-[2rem] md:rounded-[3rem] relative my-auto md:my-8"
       >
         {/* Background Accent */}
         <div className="absolute top-0 right-0 w-32 h-32 bg-primary/20 blur-[60px] rounded-full -mr-16 -mt-16" />
 
-        <div className="flex justify-between items-center mb-10">
+        <div className="flex justify-between items-center mb-6 md:mb-10">
           <div>
             <h3 className="text-3xl font-black flex items-center gap-3">
               PLACE <span className="text-primary">BET</span>
@@ -47,7 +47,7 @@ const BetModal = ({ cardCode, onClose, onSubmit, balance }) => {
         </div>
 
         <form onSubmit={handleSubmit((data) => onSubmit(data.amount))}>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-10">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 mb-6 md:mb-10">
             <div className="space-y-6">
               <div className="bg-background/50 p-6 rounded-3xl border border-white/5">
                 <span className="text-[10px] font-black text-gray-500 uppercase tracking-widest block mb-2">Selected Card</span>
@@ -98,7 +98,7 @@ const BetModal = ({ cardCode, onClose, onSubmit, balance }) => {
             </div>
           </div>
 
-          <div className="flex items-center gap-3 p-4 bg-primary/5 border border-primary/10 rounded-2xl mb-10">
+          <div className="flex items-center gap-3 p-4 bg-primary/5 border border-primary/10 rounded-2xl mb-6 md:mb-10">
             <Info size={16} className="text-primary shrink-0" />
             <p className="text-[10px] text-primary/80 font-medium leading-relaxed">
               Once placed, bets are final and cannot be cancelled. The winner is determined by the lowest total bet volume at the start of the next hour.

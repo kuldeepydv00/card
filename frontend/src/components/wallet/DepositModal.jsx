@@ -121,13 +121,13 @@ const DepositModal = ({ onClose, onSuccess }) => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 backdrop-blur-md p-4 overflow-y-auto"
+      className="fixed inset-0 z-50 flex items-start md:items-center justify-center bg-black/80 backdrop-blur-md p-4 overflow-y-auto"
     >
       <motion.div 
         initial={{ scale: 0.9, y: 20 }}
         animate={{ scale: 1, y: 0 }}
         exit={{ scale: 0.9, y: 20 }}
-        className="glass-card w-full max-w-md p-6 md:p-8 rounded-3xl relative overflow-hidden my-8"
+        className="glass-card w-full max-w-md p-6 md:p-8 rounded-3xl relative my-auto md:my-8"
       >
         <div className="flex justify-between items-start mb-6">
           <div className="pr-4">
