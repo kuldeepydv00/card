@@ -47,7 +47,7 @@ const Login = () => {
         icon: '👋',
         style: { borderRadius: '10px', background: '#333', color: '#fff' }
       });
-      navigate('/');
+      navigate('/arena');
     } catch (error) {
       toast.error(error.response?.data?.error || 'Login failed. Please check your credentials.');
     }

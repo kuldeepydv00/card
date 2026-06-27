@@ -84,11 +84,11 @@ const Signup = () => {
     setIsVerifying(true);
     try {
       await verifySignup(signupData.username, signupData.email, signupData.password, signupData.phone, otpString);
-      toast.success('Account created successfully!', {
+      toast.success('Registration successful!', {
         icon: '🎉',
         style: { borderRadius: '10px', background: '#333', color: '#fff' }
       });
-      navigate('/');
+      navigate('/arena');
     } catch (error) {
       toast.error(error.response?.data?.error || 'Invalid OTP. Please try again.');
       // Clear OTP on failure

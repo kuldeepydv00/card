@@ -14,12 +14,19 @@ import Withdraw from './pages/Withdraw';
 import AdminDashboard from './pages/admin/AdminDashboard';
 import ResultsHistory from './pages/ResultsHistory';
 
+// Public Pages
+import Landing from './pages/public/Landing';
+import Terms from './pages/public/Terms';
+import Privacy from './pages/public/Privacy';
+import FAQ from './pages/public/FAQ';
+import About from './pages/public/About';
+
 const PrivateRoute = ({ children, adminOnly = false }) => {
   const { user, loading } = useAuth();
 
   if (loading) return <div className="min-h-screen flex items-center justify-center">Loading...</div>;
   if (!user) return <Navigate to="/login" />;
-  if (adminOnly && user.role !== 'admin') return <Navigate to="/" />;
+  if (adminOnly && user.role !== 'admin') return <Navigate to="/arena" />;
 
   return children;
 };
@@ -27,10 +34,16 @@ const PrivateRoute = ({ children, adminOnly = false }) => {
 const AppContent = () => {
   return (
     <Routes>
+      <Route path="/" element={<Landing />} />
+      <Route path="/about" element={<About />} />
+      <Route path="/terms" element={<Terms />} />
+      <Route path="/privacy" element={<Privacy />} />
+      <Route path="/faq" element={<FAQ />} />
+
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Signup />} />
       
-      <Route path="/" element={
+      <Route path="/arena" element={
         <PrivateRoute>
           <SocketProvider>
             <Dashboard />
