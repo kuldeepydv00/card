@@ -1,4 +1,4 @@
-const CACHE_NAME = '50xcards-v3';
+const CACHE_NAME = '50xcards-v4';
 const ASSETS_TO_CACHE = [
   '/',
   '/index.html',
@@ -29,6 +29,24 @@ self.addEventListener('activate', (event) => {
 });
 
 self.addEventListener('fetch', (event) => {
+  // Use Network-First for HTML/Navigation requests to ensure the latest React bundle is loaded
+  if (event.request.mode === 'navigate') {
+    event.respondWith(
+      fetch(event.request)
+        .then((response) => {
+          return caches.open(CACHE_NAME).then((cache) => {
+            cache.put(event.request, response.clone());
+            return response;
+          });
+        })
+        .catch(() => {
+          return caches.match(event.request);
+        })
+    );
+    return;
+  }
+
+  // Cache-First for static assets like images, manifests
   event.respondWith(
     caches.match(event.request).then((response) => {
       return response || fetch(event.request);
