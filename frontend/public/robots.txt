@@ -1,6 +1,9 @@
 User-agent: *
 Allow: /
-Disallow: /admin
+Disallow: /arena
+Disallow: /my-bets
+Disallow: /results
 Disallow: /wallet
+Disallow: /admin
 
-Sitemap: https://elitecards.com/sitemap.xml
+Sitemap: https://50xcards.in/sitemap.xml
