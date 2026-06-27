@@ -7,6 +7,7 @@ import CardGrid from '../components/betting/CardGrid';
 import BetModal from '../components/betting/BetModal';
 import DepositModal from '../components/wallet/DepositModal';
 import CountdownTimer from '../components/common/CountdownTimer';
+import CardIcon from '../components/common/CardIcon';
 import { toast } from 'react-hot-toast';
 import { Wallet, Trophy, History, TrendingDown, Target, Info } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -161,9 +162,7 @@ const Dashboard = () => {
                         </span>
                         <span className="text-[10px] text-primary/70 font-bold tracking-tighter">SUCCESSFUL</span>
                       </div>
-                      <div className="w-10 h-10 bg-background rounded-xl flex items-center justify-center border border-white/5 font-black text-accent text-lg group-hover:scale-110 transition-transform">
-                        {res.winning_card}
-                      </div>
+                      <CardIcon cardCode={res.winning_card} size="sm" className="group-hover:scale-110 transition-transform" />
                     </div>
                   ))
                 )}
@@ -186,8 +185,8 @@ const Dashboard = () => {
                     <div key={bet._id} className="flex justify-between items-center p-4 bg-background border border-white/5 rounded-2xl relative overflow-hidden group">
                       <div className="absolute left-0 top-0 bottom-0 w-1 bg-primary" />
                       <div>
-                        <span className="text-[10px] font-bold text-gray-500 block">CARD</span>
-                        <span className="font-black text-lg">{bet.card_code}</span>
+                        <span className="text-[10px] font-bold text-gray-500 block mb-1">CARD</span>
+                        <CardIcon cardCode={bet.card_code} size="sm" />
                       </div>
                       <div className="text-right">
                         <span className="text-[10px] font-bold text-gray-500 block">STAKE</span>
