@@ -7,6 +7,7 @@ import { SocketProvider } from './context/SocketContext';
 // Pages
 import Dashboard from './pages/Dashboard';
 import Login from './pages/Login';
+import ForgotPassword from './pages/public/ForgotPassword';
 import Signup from './pages/Signup';
 import MyBets from './pages/MyBets';
 import Transactions from './pages/Transactions';
@@ -41,6 +42,7 @@ const AppContent = () => {
       <Route path="/faq" element={<FAQ />} />
 
       <Route path="/login" element={<Login />} />
+      <Route path="/forgot-password" element={<ForgotPassword />} />
       <Route path="/signup" element={<Signup />} />
       
       <Route path="/arena" element={

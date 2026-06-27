@@ -48,6 +48,16 @@ const withdrawalSchema = z.object({
   })
 });
 
+const forgotPasswordSchema = z.object({
+  email: z.string().email()
+});
+
+const resetPasswordSchema = z.object({
+  email: z.string().email(),
+  otp: z.string().length(6),
+  newPassword: z.string().min(6)
+});
+
 module.exports = {
   loginSchema,
   signupSchema,
@@ -55,5 +65,7 @@ module.exports = {
   placeBetSchema,
   depositSchema,
   manualDepositSchema,
-  withdrawalSchema
+  withdrawalSchema,
+  forgotPasswordSchema,
+  resetPasswordSchema
 };
