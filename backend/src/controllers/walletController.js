@@ -2,6 +2,7 @@ const Transaction = require('../models/Transaction');
 const WithdrawalRequest = require('../models/WithdrawalRequest');
 const DepositRequest = require('../models/DepositRequest');
 const { createOrder } = require('../services/paymentGateway');
+const { createNotification } = require('../services/notificationService');
 
 const getBalance = async (req, res) => {
   res.json({ balance: req.user.wallet_balance });
@@ -45,6 +46,15 @@ const submitManualDeposit = async (req, res) => {
     });
 
     await request.save();
+    
+    // Trigger notification
+    await createNotification(
+      req.user.id,
+      'Deposit Pending',
+      `Your deposit request of ₹${amount} is pending admin approval.`,
+      'deposit'
+    );
+    
     res.status(201).json({ message: 'Deposit request submitted successfully', request });
   } catch (error) {
     res.status(500).json({ error: 'Internal server error' });
@@ -103,6 +113,14 @@ const requestWithdrawal = async (req, res) => {
     transaction.reference_id = request._id.toString();
     await transaction.save();
 
+    // Trigger notification
+    await createNotification(
+      req.user.id,
+      'Withdrawal Pending',
+      `Your withdrawal request of ₹${amount} is pending admin approval.`,
+      'withdrawal'
+    );
+
     res.status(201).json(request);
   } catch (error) {
     res.status(500).json({ error: 'Internal server error' });
@@ -122,6 +140,31 @@ const getPublicSettings = async (req, res) => {
   }
 };
 
+const getNotifications = async (req, res) => {
+  try {
+    const Notification = require('../models/Notification');
+    const notifications = await Notification.find({ user_id: req.user.id })
+      .sort({ created_at: -1 })
+      .limit(50);
+    res.json(notifications);
+  } catch (error) {
+    res.status(500).json({ error: 'Internal server error' });
+  }
+};
+
+const markNotificationAsRead = async (req, res) => {
+  try {
+    const Notification = require('../models/Notification');
+    await Notification.findOneAndUpdate(
+      { _id: req.params.id, user_id: req.user.id },
+      { is_read: true }
+    );
+    res.json({ success: true });
+  } catch (error) {
+    res.status(500).json({ error: 'Internal server error' });
+  }
+};
+
 module.exports = { 
   getBalance, 
   getTransactions, 
@@ -129,5 +172,7 @@ module.exports = {
   submitManualDeposit,
   getManualDeposits,
   requestWithdrawal,
-  getPublicSettings
+  getPublicSettings,
+  getNotifications,
+  markNotificationAsRead
 };

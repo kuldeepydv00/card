@@ -3,6 +3,7 @@ const HourlyResult = require('../models/HourlyResult');
 const Setting = require('../models/Setting');
 const User = require('../models/User');
 const { updateBalance } = require('./walletService');
+const { createNotification } = require('./notificationService');
 const { resolveTie } = require('../utils/tieBreaker');
 const logger = require('../utils/logger');
 const mongoose = require('mongoose');
@@ -103,6 +104,14 @@ const processHourlyResult = async (hourSlot, manualWinningCard = null, adminId =
             card: winningCard
           });
         }
+
+        // Notification
+        await createNotification(
+          bet.user_id,
+          'You Won! 🎉',
+          `Congratulations! Your bet on ${winningCard} won you ₹${winAmount}.`,
+          'win'
+        );
       } else {
         bet.win_amount = 0;
         bet.status = 'settled';
@@ -231,6 +240,14 @@ const processHourlyResultWithoutSession = async (hourSlot, manualWinningCard = n
           card: winningCard
         });
       }
+
+      // Notification
+      await createNotification(
+        bet.user_id,
+        'You Won! 🎉',
+        `Congratulations! Your bet on ${winningCard} won you ₹${winAmount}.`,
+        'win'
+      );
     } else {
       bet.win_amount = 0;
       bet.status = 'settled';

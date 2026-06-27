@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
 import { AuthProvider, useAuth } from './context/AuthContext';
 import { SocketProvider } from './context/SocketContext';
+import { NotificationProvider } from './context/NotificationContext';
 
 // Pages
 import Dashboard from './pages/Dashboard';
@@ -48,7 +49,9 @@ const AppContent = () => {
       <Route path="/arena" element={
         <PrivateRoute>
           <SocketProvider>
-            <Dashboard />
+            <NotificationProvider>
+              <Dashboard />
+            </NotificationProvider>
           </SocketProvider>
         </PrivateRoute>
       } />
@@ -56,7 +59,19 @@ const AppContent = () => {
       <Route path="/my-bets" element={
         <PrivateRoute>
           <SocketProvider>
-            <MyBets />
+            <NotificationProvider>
+              <MyBets />
+            </NotificationProvider>
+          </SocketProvider>
+        </PrivateRoute>
+      } />
+
+      <Route path="/history" element={
+        <PrivateRoute>
+          <SocketProvider>
+            <NotificationProvider>
+              <ResultsHistory />
+            </NotificationProvider>
           </SocketProvider>
         </PrivateRoute>
       } />
@@ -64,23 +79,19 @@ const AppContent = () => {
       <Route path="/transactions" element={
         <PrivateRoute>
           <SocketProvider>
-            <Transactions />
+            <NotificationProvider>
+              <Transactions />
+            </NotificationProvider>
           </SocketProvider>
         </PrivateRoute>
       } />
 
-      <Route path="/results" element={
+      <Route path="/withdraw" element={
         <PrivateRoute>
           <SocketProvider>
-            <ResultsHistory />
-          </SocketProvider>
-        </PrivateRoute>
-      } />
-
-      <Route path="/wallet" element={
-        <PrivateRoute>
-          <SocketProvider>
-            <Withdraw />
+            <NotificationProvider>
+              <Withdraw />
+            </NotificationProvider>
           </SocketProvider>
         </PrivateRoute>
       } />

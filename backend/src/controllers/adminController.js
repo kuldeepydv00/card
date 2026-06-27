@@ -6,6 +6,7 @@ const DepositRequest = require('../models/DepositRequest');
 const AdminLog = require('../models/AdminLog');
 const { updateBalance } = require('../services/walletService');
 const { processHourlyResult } = require('../services/resultProcessor');
+const { createNotification } = require('../services/notificationService');
 const Setting = require('../models/Setting');
 const { getIo } = require('../config/socket');
 
@@ -144,9 +145,16 @@ const approveWithdrawal = async (req, res) => {
     request.processed_at = new Date();
     await request.save();
 
-    await logAdminAction(req.user.id, 'APPROVE_WITHDRAWAL', request._id, 'WithdrawalRequest', { amount: request.amount }, req);
+    await logAdminAction(req.user.id, 'APPROVE_WITHDRAWAL', request.user_id, 'WithdrawalRequest', { amount: request.amount, requestId: request._id }, req);
 
-    res.json({ message: 'Withdrawal approved' });
+    await createNotification(
+      request.user_id,
+      'Withdrawal Approved',
+      `Your withdrawal of ₹${request.amount} has been approved and processed.`,
+      'withdrawal'
+    );
+
+    res.json({ message: 'Withdrawal approved successfully' });
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
@@ -176,9 +184,16 @@ const rejectWithdrawal = async (req, res) => {
     request.processed_at = new Date();
     await request.save();
 
-    await logAdminAction(req.user.id, 'REJECT_WITHDRAWAL', request._id, 'WithdrawalRequest', { remarks }, req);
+    await logAdminAction(req.user.id, 'REJECT_WITHDRAWAL', request.user_id, 'WithdrawalRequest', { amount: request.amount, requestId: request._id }, req);
 
-    res.json({ message: 'Withdrawal rejected & amount refunded' });
+    await createNotification(
+      request.user_id,
+      'Withdrawal Rejected',
+      `Your withdrawal of ₹${request.amount} was rejected. The funds have been refunded to your wallet.`,
+      'withdrawal'
+    );
+
+    res.json({ message: 'Withdrawal rejected and refunded' });
   } catch (error) {
     res.status(500).json({ error: 'Internal server error' });
   }
@@ -237,9 +252,16 @@ const approveDeposit = async (req, res) => {
     request.processed_at = new Date();
     await request.save();
 
-    await logAdminAction(req.user.id, 'APPROVE_DEPOSIT', request._id, 'DepositRequest', { amount: request.amount, utr: request.utr_number }, req);
+    await logAdminAction(req.user.id, 'APPROVE_DEPOSIT', request.user_id, 'DepositRequest', { amount: request.amount, requestId: request._id }, req);
 
-    res.json({ message: 'Deposit approved and wallet credited' });
+    await createNotification(
+      request.user_id,
+      'Deposit Approved',
+      `Your deposit of ₹${request.amount} has been approved and added to your wallet.`,
+      'deposit'
+    );
+
+    res.json({ message: 'Deposit approved successfully' });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
@@ -260,7 +282,14 @@ const rejectDeposit = async (req, res) => {
     request.processed_at = new Date();
     await request.save();
 
-    await logAdminAction(req.user.id, 'REJECT_DEPOSIT', request._id, 'DepositRequest', { remarks, utr: request.utr_number }, req);
+    await logAdminAction(req.user.id, 'REJECT_DEPOSIT', request.user_id, 'DepositRequest', { remarks, utr: request.utr_number }, req);
+
+    await createNotification(
+      request.user_id,
+      'Deposit Rejected',
+      `Your deposit request of ₹${request.amount} has been rejected. Reason: ${remarks || 'Contact support'}`,
+      'deposit'
+    );
 
     res.json({ message: 'Deposit rejected' });
   } catch (error) {

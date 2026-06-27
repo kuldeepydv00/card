@@ -12,6 +12,10 @@ const { betLimiter } = require('../middleware/rateLimiter');
 router.get('/balance', verifyToken, walletController.getBalance);
 router.get('/transactions', verifyToken, walletController.getTransactions);
 
+// Notifications
+router.get('/notifications', verifyToken, walletController.getNotifications);
+router.put('/notifications/:id/read', verifyToken, walletController.markNotificationAsRead);
+
 // Betting
 router.post('/bet/place', verifyToken, betLimiter, validate(placeBetSchema), betController.placeBet);
 router.get('/bets/current', verifyToken, betController.getUserCurrentBets);

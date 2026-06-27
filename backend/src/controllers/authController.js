@@ -3,6 +3,7 @@ const Otp = require('../models/Otp');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const { sendOtpEmail } = require('../utils/mailer');
+const { createNotification } = require('../services/notificationService');
 
 const generateOTP = () => {
   return Math.floor(100000 + Math.random() * 900000).toString(); // 6 digit OTP
@@ -71,6 +72,14 @@ const verifySignupOtp = async (req, res) => {
 
     const token = jwt.sign({ id: user._id, role: user.role }, process.env.JWT_SECRET, { expiresIn: process.env.JWT_EXPIRES_IN });
     const refreshToken = jwt.sign({ id: user._id }, process.env.REFRESH_SECRET, { expiresIn: process.env.REFRESH_EXPIRES_IN });
+    
+    // Trigger Welcome Notification
+    await createNotification(
+      user._id,
+      'Welcome to 50xcards!',
+      'Your account has been successfully created. Good luck in the arena!',
+      'system'
+    );
     
     res.status(201).json({ 
       token, 
