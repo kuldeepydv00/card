@@ -30,7 +30,13 @@ const PrivateRoute = ({ children, adminOnly = false }) => {
   if (!user) return <Navigate to="/login" />;
   if (adminOnly && user.role !== 'admin') return <Navigate to="/arena" />;
 
-  return children;
+  return (
+    <SocketProvider>
+      <NotificationProvider>
+        {children}
+      </NotificationProvider>
+    </SocketProvider>
+  );
 };
 
 const AppContent = () => {
@@ -48,59 +54,37 @@ const AppContent = () => {
       
       <Route path="/arena" element={
         <PrivateRoute>
-          <SocketProvider>
-            <NotificationProvider>
-              <Dashboard />
-            </NotificationProvider>
-          </SocketProvider>
+          <Dashboard />
         </PrivateRoute>
       } />
 
       <Route path="/my-bets" element={
         <PrivateRoute>
-          <SocketProvider>
-            <NotificationProvider>
-              <MyBets />
-            </NotificationProvider>
-          </SocketProvider>
+          <MyBets />
         </PrivateRoute>
       } />
 
       <Route path="/history" element={
         <PrivateRoute>
-          <SocketProvider>
-            <NotificationProvider>
-              <ResultsHistory />
-            </NotificationProvider>
-          </SocketProvider>
+          <ResultsHistory />
         </PrivateRoute>
       } />
 
       <Route path="/transactions" element={
         <PrivateRoute>
-          <SocketProvider>
-            <NotificationProvider>
-              <Transactions />
-            </NotificationProvider>
-          </SocketProvider>
+          <Transactions />
         </PrivateRoute>
       } />
 
       <Route path="/withdraw" element={
         <PrivateRoute>
-          <SocketProvider>
-            <NotificationProvider>
-              <Withdraw />
-            </NotificationProvider>
-          </SocketProvider>
+          <Withdraw />
         </PrivateRoute>
       } />
 
       <Route path="/admin" element={
         <PrivateRoute adminOnly>
-          <SocketProvider>
-            <AdminDashboard />
-          </SocketProvider>
+          <AdminDashboard />
         </PrivateRoute>
       } />
       
