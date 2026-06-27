@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import api from '../services/api';
 import Navbar from '../components/common/Navbar';
+import CardIcon from '../components/common/CardIcon';
 import { History, Trophy, Clock, TrendingUp, ChevronLeft } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
@@ -87,12 +88,7 @@ const ResultsHistory = () => {
                     <span className="text-[10px] font-black text-gray-600 uppercase tracking-widest block mb-1">POOL VOLUME</span>
                     <span className="text-sm font-black text-gray-400">₹{res.total_bet_volume.toLocaleString()}</span>
                   </div>
-                  <div className="w-14 h-16 bg-background rounded-2xl flex items-center justify-center border border-white/10 relative overflow-hidden group-hover:scale-110 transition-transform shadow-2xl">
-                    <div className="absolute top-1 left-1.5 opacity-10">
-                      <Trophy size={10} />
-                    </div>
-                    <span className="text-2xl font-black text-accent tracking-tighter">{res.winning_card}</span>
-                  </div>
+                  <CardIcon cardCode={res.winning_card} size="md" className="group-hover:scale-110 shadow-2xl" />
                 </div>
               </motion.div>
             ))}

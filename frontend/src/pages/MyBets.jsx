@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import api from '../services/api';
 import Navbar from '../components/common/Navbar';
+import CardIcon from '../components/common/CardIcon';
 import { History, ChevronLeft, ChevronRight, Filter, Trophy, Clock, Target } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -135,9 +136,7 @@ const MyBets = () => {
                           </div>
                         </td>
                         <td className="px-8 py-6">
-                          <span className="w-10 h-12 bg-white/5 border border-white/10 rounded-xl flex items-center justify-center font-black text-primary group-hover:scale-110 transition-transform">
-                            {bet.card_code}
-                          </span>
+                          <CardIcon cardCode={bet.card_code} size="sm" className="group-hover:scale-110 transition-transform" />
                         </td>
                         <td className="px-8 py-6 text-sm font-black text-gray-300">₹{bet.bet_amount.toLocaleString()}</td>
                         <td className="px-8 py-6">
