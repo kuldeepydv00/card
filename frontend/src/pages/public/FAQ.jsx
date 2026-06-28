@@ -7,8 +7,8 @@ const FAQ = () => {
   return (
     <div className="min-h-screen bg-[#0a0f1c] text-white font-sans">
       <Helmet>
-        <title>Help Center & FAQ | 50xcards</title>
-        <meta name="description" content="Get help with your 50xcards account, deposits, withdrawals, and understand how the card trading multipliers work." />
+        <title>Help Center & FAQ | 50xcards - Online Card Game India</title>
+        <meta name="description" content="Get help with your 50xcards account, deposits, withdrawals, and understand how the real money card trading multipliers work in India." />
       </Helmet>
 
       {/* Navbar Minimal */}
@@ -26,7 +26,7 @@ const FAQ = () => {
       </nav>
 
       <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-        <h1 className="text-4xl md:text-5xl font-black mb-8">Help Center & FAQ</h1>
+        <h1 className="text-4xl md:text-5xl font-black mb-8">Help Center & FAQ - 50xcards</h1>
         <div className="prose prose-invert max-w-none prose-p:text-gray-400 prose-p:leading-relaxed prose-h2:text-2xl prose-h2:font-bold prose-h2:mt-12 prose-h2:mb-6">
           
           <h2>How does the game work?</h2>

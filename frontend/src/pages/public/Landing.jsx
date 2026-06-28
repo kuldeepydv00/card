@@ -47,13 +47,29 @@ const Landing = () => {
     }
   ];
 
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faqs.map(faq => ({
+      "@type": "Question",
+      "name": faq.q,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": faq.a
+      }
+    }))
+  };
+
   return (
     <div className="min-h-screen bg-[#0a0f1c] text-white font-sans selection:bg-primary/30">
       <Helmet>
-        <title>50xcards | The Best Card Trading & Betting Game in India</title>
-        <meta name="description" content="Play 50xcards, the most thrilling online multiplayer card prediction game. Place your bets, track live volumes, and win massive 50x payouts in real-time." />
+        <title>50xcards | India's #1 Real Money Online Card Game</title>
+        <meta name="description" content="Join India's most exclusive online card betting arena — play real money multiplayer card games like Teen Patti and win big on 50xcards." />
         <meta name="keywords" content="50xcards, card trading, online betting, best betting game in India, crypto casino, multiplayer card game, real money betting" />
         <link rel="canonical" href="https://50xcards.in/" />
+        <script type="application/ld+json">
+          {JSON.stringify(faqSchema)}
+        </script>
       </Helmet>
 
       {/* Navbar */}
@@ -87,8 +103,8 @@ const Landing = () => {
               The #1 Online Betting Arena
             </span>
             <h1 className="text-5xl md:text-7xl font-black mb-6 leading-tight tracking-tight">
-              Predict. Wager. <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">Win 50x Instantly.</span>
+              50xcards: India's #1 <br /> Real Money Online Card Game. <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">Predict & Win 50x.</span>
             </h1>
             <p className="text-xl text-gray-400 mb-10 max-w-2xl mx-auto font-medium">
               Join the ultimate card trading and multiplayer prediction game in India. Place wagers on your lucky cards and secure massive payouts.
