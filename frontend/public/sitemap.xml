@@ -2,46 +2,46 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <!-- Core Landing Page -->
   <url>
-    <loc>https://50xcards.in/</loc>
+    <loc>https://www.50xcards.in/</loc>
     <lastmod>2026-06-27</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
   <!-- SEO & Information Pages -->
   <url>
-    <loc>https://50xcards.in/about</loc>
+    <loc>https://www.50xcards.in/about</loc>
     <lastmod>2026-06-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://50xcards.in/faq</loc>
+    <loc>https://www.50xcards.in/faq</loc>
     <lastmod>2026-06-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <!-- Legal Pages -->
   <url>
-    <loc>https://50xcards.in/terms</loc>
+    <loc>https://www.50xcards.in/terms</loc>
     <lastmod>2026-06-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://50xcards.in/privacy</loc>
+    <loc>https://www.50xcards.in/privacy</loc>
     <lastmod>2026-06-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <!-- Auth Pages -->
   <url>
-    <loc>https://50xcards.in/login</loc>
+    <loc>https://www.50xcards.in/login</loc>
     <lastmod>2026-06-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://50xcards.in/signup</loc>
+    <loc>https://www.50xcards.in/signup</loc>
     <lastmod>2026-06-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>

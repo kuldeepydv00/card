@@ -6,4 +6,4 @@ Disallow: /results
 Disallow: /wallet
 Disallow: /admin
 
-Sitemap: https://50xcards.in/sitemap.xml
+Sitemap: https://www.50xcards.in/sitemap.xml
