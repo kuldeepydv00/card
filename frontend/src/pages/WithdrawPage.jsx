@@ -12,14 +12,14 @@ const WithdrawPage = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="h-[100dvh] bg-background flex flex-col overflow-hidden">
+    <div className="min-h-screen bg-background pb-20">
       <Helmet>
         <title>Withdraw Funds | 50xcards</title>
       </Helmet>
       <Navbar />
       
-      <main className="flex-1 flex flex-col max-w-2xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-4 md:py-8 overflow-hidden">
-        <div className="flex items-center gap-4 mb-4 shrink-0">
+      <main className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div className="flex items-center gap-4 mb-8">
           <Link to="/wallet" className="w-10 h-10 bg-white/5 rounded-full flex items-center justify-center text-gray-500 hover:text-white transition-all">
             <ChevronLeft size={20} />
           </Link>
@@ -32,14 +32,14 @@ const WithdrawPage = () => {
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="glass-card rounded-3xl flex-1 flex flex-col overflow-hidden"
+          className="glass-card rounded-3xl overflow-hidden"
         >
-          <div className="p-4 md:p-6 border-b border-white/5 flex items-center justify-between bg-white/[0.02] shrink-0">
+          <div className="p-6 md:p-10 border-b border-white/5 flex items-center justify-between bg-white/[0.02]">
             <h3 className="font-black text-sm uppercase tracking-widest flex items-center gap-3">
               <ArrowUpRight className="text-red-500" /> SECURE WITHDRAWAL
             </h3>
           </div>
-          <div className="p-4 md:p-6 flex-1 flex flex-col overflow-hidden">
+          <div className="p-6 md:p-10">
             <WithdrawForm 
               balance={user?.wallet_balance || 0} 
               onSuccess={() => {
