@@ -213,9 +213,6 @@ const Dashboard = () => {
               fetchCurrentBets();
             }}
           />
-        )}
-        
-        {showDeposit && <DepositModal key="deposit-modal" onClose={() => setShowDeposit(false)} onSuccess={() => setShowDeposit(false)} />}
       </AnimatePresence>
     </div>
   );
