@@ -213,6 +213,7 @@ const Dashboard = () => {
               fetchCurrentBets();
             }}
           />
+        )}
       </AnimatePresence>
     </div>
   );
