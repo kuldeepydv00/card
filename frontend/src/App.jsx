@@ -76,7 +76,7 @@ const AppContent = () => {
         </PrivateRoute>
       } />
 
-      <Route path="/withdraw" element={
+      <Route path="/wallet" element={
         <PrivateRoute>
           <Withdraw />
         </PrivateRoute>

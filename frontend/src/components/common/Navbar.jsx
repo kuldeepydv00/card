@@ -22,7 +22,7 @@ const Navbar = () => {
     { label: 'Game', path: '/arena', icon: LayoutDashboard },
     { label: 'History', path: '/my-bets', icon: History },
     { label: 'Last Result', path: '/history', icon: Trophy },
-    { label: 'Wallet', path: '/transactions', icon: Wallet },
+    { label: 'Wallet', path: '/wallet', icon: Wallet },
   ];
 
   if (user.role === 'admin') {
@@ -77,7 +77,7 @@ const Navbar = () => {
                 <span className="text-[10px] font-bold text-gray-500 uppercase tracking-widest">Balance</span>
                 <span className="text-sm font-black text-accent">₹{user.wallet_balance.toLocaleString()}</span>
               </div>
-              <Link to="/transactions" className="w-8 h-8 bg-white/10 rounded-xl flex items-center justify-center hover:bg-primary transition-colors group">
+              <Link to="/wallet" className="w-8 h-8 bg-white/10 rounded-xl flex items-center justify-center hover:bg-primary transition-colors group">
                 <Wallet size={16} className="text-gray-400 group-hover:text-white" />
               </Link>
             </div>
@@ -127,7 +127,7 @@ const Navbar = () => {
                   <span className="text-[10px] font-bold text-gray-500 uppercase tracking-widest">Balance</span>
                   <span className="text-sm font-black text-accent">₹{user.wallet_balance.toLocaleString()}</span>
                 </div>
-                <Link to="/transactions" onClick={() => setIsMobileMenuOpen(false)} className="w-8 h-8 bg-white/10 rounded-xl flex items-center justify-center text-gray-400">
+                <Link to="/wallet" onClick={() => setIsMobileMenuOpen(false)} className="w-8 h-8 bg-white/10 rounded-xl flex items-center justify-center text-gray-400">
                   <Wallet size={16} />
                 </Link>
               </div>
