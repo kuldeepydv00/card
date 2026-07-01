@@ -133,17 +133,17 @@ const DepositPage = () => {
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="glass-card p-4 md:p-6 rounded-3xl flex-1 flex flex-col overflow-hidden"
+          className="glass-card p-4 rounded-3xl flex-1 flex flex-col overflow-hidden"
         >
-          <form onSubmit={handleSubmit(onSubmit)} className="h-full flex flex-col overflow-y-auto pr-2 gap-4">
-            <div className="mb-4 shrink-0">
+          <form onSubmit={handleSubmit(onSubmit)} className="h-full flex flex-col justify-between gap-3">
+            <div className="mb-2 shrink-0">
               <label className="text-[10px] font-black text-gray-500 uppercase tracking-widest ml-1 mb-2 block">Amount to Inject</label>
               <div className="relative group">
                 <span className="absolute left-6 top-1/2 -translate-y-1/2 text-2xl font-black text-gray-600 group-focus-within:text-primary transition-colors">₹</span>
                 <input
                   type="number"
                   {...register('amount', { valueAsNumber: true })}
-                  className="w-full bg-white/5 border border-white/5 rounded-2xl p-4 pl-10 text-xl font-black focus:border-primary/50 outline-none transition-all tracking-tighter"
+                  className="w-full bg-white/5 border border-white/5 rounded-xl p-3 pl-10 text-lg font-black focus:border-primary/50 outline-none transition-all tracking-tighter"
                   placeholder="0"
                   autoFocus
                 />
@@ -158,12 +158,12 @@ const DepositPage = () => {
                   initial={{ opacity: 0, x: -10 }}
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: 10 }}
-                  className="flex flex-col gap-4 mb-4 shrink-0"
+                  className="flex flex-col gap-3 shrink-0"
                 >
-                  <div className="bg-white/[0.02] p-4 rounded-3xl border border-white/5 space-y-4">
+                  <div className="bg-white/[0.02] p-3 rounded-2xl border border-white/5 space-y-2">
                     <div>
                       <span className="text-[10px] font-black text-gray-500 uppercase tracking-widest block mb-2">Direct UPI ID</span>
-                      <div className="flex items-center justify-between bg-background p-4 rounded-2xl border border-white/5">
+                      <div className="flex items-center justify-between bg-background p-3 rounded-xl border border-white/5">
                         <span className="font-black text-white text-sm truncate mr-4">
                           {paymentConfig?.payment_upi_id || 'NOT_CONFIGURED'}
                         </span>
@@ -178,29 +178,29 @@ const DepositPage = () => {
                     </div>
 
                     {paymentConfig?.payment_upi_id && amount > 0 && !errors.amount && (
-                      <div className="flex flex-col items-center justify-center p-6 bg-white rounded-2xl border-4 border-white/10 mt-4">
-                        <p className="text-black font-black text-xs uppercase tracking-widest mb-4">Scan to Pay ₹{amount}</p>
+                      <div className="flex flex-col items-center justify-center p-4 bg-white rounded-xl border-4 border-white/10 mt-2">
+                        <p className="text-black font-black text-[10px] uppercase tracking-widest mb-2">Scan to Pay ₹{amount}</p>
                         <img 
-                          src={`https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(`upi://pay?pa=${paymentConfig.payment_upi_id}&pn=Admin&am=${amount}&cu=INR`)}`} 
+                          src={`https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(`upi://pay?pa=${paymentConfig.payment_upi_id}&pn=Admin&am=${amount}&cu=INR`)}`} 
                           alt="UPI QR Code" 
-                          className="w-32 h-32"
+                          className="w-24 h-24"
                         />
                       </div>
                     )}
 
                     {paymentConfig?.payment_bank_details && (
                       <div className="mt-4">
-                        <span className="text-[10px] font-black text-gray-500 uppercase tracking-widest block mb-2">Bank Details</span>
-                        <div className="bg-background p-4 rounded-2xl border border-white/5 text-[10px] font-bold text-gray-400 whitespace-pre-line leading-relaxed">
+                        <span className="text-[10px] font-black text-gray-500 uppercase tracking-widest block mb-1">Bank Details</span>
+                        <div className="bg-background p-3 rounded-xl border border-white/5 text-[9px] font-bold text-gray-400 whitespace-pre-line leading-relaxed">
                           {paymentConfig.payment_bank_details}
                         </div>
                       </div>
                     )}
                   </div>
 
-                  <div className="bg-yellow-500/5 p-4 rounded-2xl border border-yellow-500/10 flex items-start gap-3">
-                    <Zap className="text-yellow-500 shrink-0 mt-0.5" size={14} />
-                    <p className="text-[10px] text-gray-500 leading-relaxed font-medium">
+                  <div className="bg-yellow-500/5 p-3 rounded-xl border border-yellow-500/10 flex items-start gap-2">
+                    <Zap className="text-yellow-500 shrink-0" size={12} />
+                    <p className="text-[9px] text-gray-500 leading-tight font-medium">
                       Manual deposits require verification. Transfer the amount to the UPI ID above, then enter the UTR/Transaction ID below.
                     </p>
                   </div>
@@ -210,7 +210,7 @@ const DepositPage = () => {
                     <input
                       type="text"
                       {...register('utrNumber')}
-                      className="w-full bg-white/5 border border-white/5 rounded-2xl p-4 text-sm font-bold focus:border-primary/50 outline-none transition-all placeholder:text-gray-600"
+                      className="w-full bg-white/5 border border-white/5 rounded-xl p-3 text-sm font-bold focus:border-primary/50 outline-none transition-all placeholder:text-gray-600"
                       placeholder="e.g. 123456789012"
                     />
                     {errors.utrNumber && <p className="text-red-500 text-[10px] mt-2 ml-1">{errors.utrNumber.message}</p>}
@@ -222,14 +222,14 @@ const DepositPage = () => {
                   initial={{ opacity: 0, x: -10 }}
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: 10 }}
-                  className="grid grid-cols-3 gap-3 mb-8"
+                  className="grid grid-cols-3 gap-2 mb-4"
                 >
                   {[500, 2000, 5000].map((val) => (
                     <button
                       key={val}
                       type="button"
                       onClick={() => setValue('amount', val)}
-                      className={`py-4 rounded-2xl text-xs font-black transition-all border ${
+                      className={`py-3 rounded-xl text-xs font-black transition-all border ${
                         amount === val ? 'bg-primary text-white border-primary shadow-lg shadow-primary/20' : 'bg-white/5 border-white/5 text-gray-500 hover:border-white/20'
                       }`}
                     >
@@ -243,7 +243,7 @@ const DepositPage = () => {
             <button
               type="submit"
               disabled={isProcessing}
-              className="w-full btn-primary py-4 rounded-2xl text-lg font-black flex items-center justify-center gap-3 shrink-0 mt-auto"
+              className="w-full btn-primary py-3 rounded-xl text-sm font-black flex items-center justify-center gap-2 shrink-0 mt-auto"
             >
               {isProcessing ? (
                 <span className="w-6 h-6 border-2 border-white/30 border-t-white rounded-full animate-spin" />
