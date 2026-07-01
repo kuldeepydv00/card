@@ -113,14 +113,14 @@ const DepositPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background pb-20">
+    <div className="h-[100dvh] bg-background flex flex-col overflow-hidden">
       <Helmet>
         <title>Deposit Funds | 50xcards</title>
       </Helmet>
       <Navbar />
       
-      <main className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="flex items-center gap-4 mb-8">
+      <main className="flex-1 flex flex-col max-w-2xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-4 md:py-8 overflow-hidden">
+        <div className="flex items-center gap-4 mb-4 shrink-0">
           <Link to="/wallet" className="w-10 h-10 bg-white/5 rounded-full flex items-center justify-center text-gray-500 hover:text-white transition-all">
             <ChevronLeft size={20} />
           </Link>
@@ -133,10 +133,10 @@ const DepositPage = () => {
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="glass-card p-6 md:p-8 rounded-3xl"
+          className="glass-card p-4 md:p-6 rounded-3xl flex-1 flex flex-col overflow-hidden"
         >
-          <form onSubmit={handleSubmit(onSubmit)}>
-            <div className="mb-8">
+          <form onSubmit={handleSubmit(onSubmit)} className="h-full flex flex-col overflow-y-auto pr-2 gap-4">
+            <div className="mb-4 shrink-0">
               <label className="text-[10px] font-black text-gray-500 uppercase tracking-widest ml-1 mb-2 block">Amount to Inject</label>
               <div className="relative group">
                 <span className="absolute left-6 top-1/2 -translate-y-1/2 text-2xl font-black text-gray-600 group-focus-within:text-primary transition-colors">₹</span>
@@ -158,9 +158,9 @@ const DepositPage = () => {
                   initial={{ opacity: 0, x: -10 }}
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: 10 }}
-                  className="space-y-6 mb-8"
+                  className="flex flex-col gap-4 mb-4 shrink-0"
                 >
-                  <div className="bg-white/[0.02] p-6 rounded-3xl border border-white/5 space-y-4">
+                  <div className="bg-white/[0.02] p-4 rounded-3xl border border-white/5 space-y-4">
                     <div>
                       <span className="text-[10px] font-black text-gray-500 uppercase tracking-widest block mb-2">Direct UPI ID</span>
                       <div className="flex items-center justify-between bg-background p-4 rounded-2xl border border-white/5">
@@ -243,7 +243,7 @@ const DepositPage = () => {
             <button
               type="submit"
               disabled={isProcessing}
-              className="w-full btn-primary py-5 rounded-2xl text-lg font-black flex items-center justify-center gap-3"
+              className="w-full btn-primary py-4 rounded-2xl text-lg font-black flex items-center justify-center gap-3 shrink-0 mt-auto"
             >
               {isProcessing ? (
                 <span className="w-6 h-6 border-2 border-white/30 border-t-white rounded-full animate-spin" />

@@ -72,8 +72,8 @@ const WithdrawForm = ({ balance, onSuccess }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="space-y-10">
-      <div className="flex gap-4">
+    <form onSubmit={handleSubmit(onSubmit)} className="h-full flex flex-col justify-between overflow-y-auto pr-2 gap-4">
+      <div className="flex gap-4 shrink-0">
         <button
           type="button"
           onClick={() => setMethod('upi')}
@@ -98,7 +98,7 @@ const WithdrawForm = ({ balance, onSuccess }) => {
         </button>
       </div>
 
-      <div className="space-y-8">
+      <div className="space-y-4 shrink-0">
         <div className="space-y-2">
           <label className="text-[10px] font-black text-gray-500 uppercase tracking-widest ml-1">Withdrawal Amount</label>
           <div className="relative group">
@@ -136,7 +136,7 @@ const WithdrawForm = ({ balance, onSuccess }) => {
               initial={{ opacity: 0, x: -10 }}
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: 10 }}
-              className="space-y-6"
+              className="space-y-4"
             >
               <div className="space-y-2">
                 <label className="text-[10px] font-black text-gray-500 uppercase tracking-widest ml-1">Account Number</label>
@@ -172,7 +172,7 @@ const WithdrawForm = ({ balance, onSuccess }) => {
         </AnimatePresence>
       </div>
 
-      <div className="p-6 bg-white/[0.02] border border-white/5 rounded-3xl flex items-start gap-4">
+      <div className="p-4 bg-white/[0.02] border border-white/5 rounded-2xl flex items-start gap-4 shrink-0">
         <ShieldCheck className="text-gray-600 shrink-0 mt-0.5" size={18} />
         <p className="text-[10px] text-gray-500 leading-relaxed font-medium">
           By submitting this request, you authorize the transfer of funds to the provided account. Ensure details are accurate. Once processed, transfers cannot be reversed.
@@ -182,7 +182,7 @@ const WithdrawForm = ({ balance, onSuccess }) => {
       <button
         type="submit"
         disabled={isSubmitting}
-        className="w-full btn-primary py-5 rounded-2xl text-lg font-black flex items-center justify-center gap-3"
+        className="w-full btn-primary py-4 rounded-2xl text-lg font-black flex items-center justify-center gap-3 shrink-0 mt-auto"
       >
         {isSubmitting ? (
           <span className="w-6 h-6 border-2 border-white/30 border-t-white rounded-full animate-spin" />
