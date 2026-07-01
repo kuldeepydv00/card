@@ -145,30 +145,6 @@ const Dashboard = () => {
             animate={{ opacity: 1, y: 0 }}
             className="space-y-8"
           >
-            {/* Last Results */}
-            <div className="glass-card rounded-3xl p-6">
-              <h3 className="text-sm font-black mb-6 flex items-center gap-2 uppercase tracking-widest text-gray-400">
-                <History className="text-primary" size={16} /> Recent Results
-              </h3>
-              <div className="space-y-3 max-h-[500px] overflow-y-auto pr-1 scrollbar-hide">
-                {lastResults.length === 0 ? (
-                  <div className="text-center py-6 text-gray-600 text-xs italic">Waiting for next declaration...</div>
-                ) : (
-                  lastResults.map((res) => (
-                    <div key={res._id} className="flex justify-between items-center p-3 bg-white/5 rounded-2xl border border-white/5 hover:border-primary/30 transition-all group">
-                      <div className="flex flex-col">
-                        <span className="text-[10px] font-bold text-gray-500 uppercase">
-                          {new Date(res.hour_slot).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
-                        </span>
-                        <span className="text-[10px] text-primary/70 font-bold tracking-tighter">SUCCESSFUL</span>
-                      </div>
-                      <CardIcon cardCode={res.winning_card} size="sm" className="group-hover:scale-110 transition-transform" />
-                    </div>
-                  ))
-                )}
-              </div>
-            </div>
-
             {/* Current Bets */}
             <div className="glass-card rounded-3xl p-6">
               <h3 className="text-sm font-black mb-6 flex items-center gap-2 uppercase tracking-widest text-gray-400">
@@ -192,6 +168,30 @@ const Dashboard = () => {
                         <span className="text-[10px] font-bold text-gray-500 block">STAKE</span>
                         <span className="font-black text-accent">₹{bet.bet_amount}</span>
                       </div>
+                    </div>
+                  ))
+                )}
+              </div>
+            </div>
+
+            {/* Last Results */}
+            <div className="glass-card rounded-3xl p-6">
+              <h3 className="text-sm font-black mb-6 flex items-center gap-2 uppercase tracking-widest text-gray-400">
+                <History className="text-primary" size={16} /> Recent Results
+              </h3>
+              <div className="space-y-3 max-h-[500px] overflow-y-auto pr-1 scrollbar-hide">
+                {lastResults.length === 0 ? (
+                  <div className="text-center py-6 text-gray-600 text-xs italic">Waiting for next declaration...</div>
+                ) : (
+                  lastResults.map((res) => (
+                    <div key={res._id} className="flex justify-between items-center p-3 bg-white/5 rounded-2xl border border-white/5 hover:border-primary/30 transition-all group">
+                      <div className="flex flex-col">
+                        <span className="text-[10px] font-bold text-gray-500 uppercase">
+                          {new Date(res.hour_slot).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                        </span>
+                        <span className="text-[10px] text-primary/70 font-bold tracking-tighter">SUCCESSFUL</span>
+                      </div>
+                      <CardIcon cardCode={res.winning_card} size="sm" className="group-hover:scale-110 transition-transform" />
                     </div>
                   ))
                 )}

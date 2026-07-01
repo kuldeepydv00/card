@@ -88,12 +88,12 @@ const Transactions = () => {
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: index * 0.03 }}
-                  className="glass-card p-6 rounded-3xl flex items-center justify-between group hover:border-primary/30 transition-all relative overflow-hidden"
+                  className="glass-card p-4 md:p-6 rounded-3xl flex items-center justify-between group hover:border-primary/30 transition-all relative overflow-hidden"
                 >
                   <div className="absolute left-0 top-0 bottom-0 w-1 bg-white/5 group-hover:bg-primary transition-colors" />
                   
-                  <div className="flex items-center gap-6">
-                    <div className="w-14 h-14 bg-white/5 rounded-2xl flex items-center justify-center border border-white/5 group-hover:scale-110 transition-transform">
+                  <div className="flex items-center gap-3 md:gap-6">
+                    <div className="w-10 h-10 md:w-14 md:h-14 bg-white/5 rounded-2xl flex items-center justify-center border border-white/5 group-hover:scale-110 transition-transform">
                       {getIcon(txn.type)}
                     </div>
                     <div>

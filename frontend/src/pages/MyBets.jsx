@@ -83,12 +83,12 @@ const MyBets = () => {
           <div className="overflow-x-auto">
             <table className="w-full text-left">
               <thead>
-                <tr className="text-[10px] font-black text-gray-500 uppercase tracking-[0.2em] border-b border-white/5 bg-white/[0.02]">
-                  <th className="px-8 py-6">Time & Slot</th>
-                  <th className="px-8 py-6">Champion Card</th>
-                  <th className="px-8 py-6">Wager</th>
-                  <th className="px-8 py-6">Outcome</th>
-                  <th className="px-8 py-6 text-right">Settlement</th>
+                <tr className="text-[10px] font-black text-gray-500 uppercase tracking-[0.2em] border-b border-white/5 bg-white/[0.02] whitespace-nowrap">
+                  <th className="px-4 py-4 md:px-8 md:py-6">Time & Slot</th>
+                  <th className="px-4 py-4 md:px-8 md:py-6">Champion Card</th>
+                  <th className="px-4 py-4 md:px-8 md:py-6">Wager</th>
+                  <th className="px-4 py-4 md:px-8 md:py-6">Outcome</th>
+                  <th className="px-4 py-4 md:px-8 md:py-6 text-right">Settlement</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-white/5">
@@ -105,9 +105,9 @@ const MyBets = () => {
                   ) : bets.length === 0 ? (
                     <motion.tr initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
                       <td colSpan="5" className="py-24 text-center">
-                        <div className="flex flex-col items-center gap-4 opacity-20">
-                          <Target size={48} />
-                          <span className="text-sm font-bold uppercase tracking-tighter">No records found in this sector</span>
+                        <div className="flex flex-col items-center gap-4 opacity-20 px-4">
+                          <Target size={32} className="md:w-12 md:h-12" />
+                          <span className="text-xs md:text-sm font-bold uppercase tracking-tighter whitespace-normal text-center">No records found in this sector</span>
                         </div>
                       </td>
                     </motion.tr>
@@ -120,13 +120,13 @@ const MyBets = () => {
                         transition={{ delay: index * 0.05 }}
                         className="hover:bg-white/[0.02] transition-colors group"
                       >
-                        <td className="px-8 py-6">
-                          <div className="flex items-center gap-4">
-                            <div className="w-10 h-10 bg-background rounded-xl flex items-center justify-center border border-white/5 text-gray-500">
+                        <td className="px-4 py-4 md:px-8 md:py-6">
+                          <div className="flex items-center gap-2 md:gap-4">
+                            <div className="hidden md:flex w-10 h-10 bg-background rounded-xl items-center justify-center border border-white/5 text-gray-500">
                               <Clock size={16} />
                             </div>
-                            <div className="flex flex-col">
-                              <span className="text-sm font-black text-white">
+                            <div className="flex flex-col whitespace-nowrap">
+                              <span className="text-xs md:text-sm font-black text-white">
                                 {new Date(bet.hour_slot).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                               </span>
                               <span className="text-[10px] font-bold text-gray-500">
@@ -135,11 +135,11 @@ const MyBets = () => {
                             </div>
                           </div>
                         </td>
-                        <td className="px-8 py-6">
+                        <td className="px-4 py-4 md:px-8 md:py-6">
                           <CardIcon cardCode={bet.card_code} size="sm" className="group-hover:scale-110 transition-transform" />
                         </td>
-                        <td className="px-8 py-6 text-sm font-black text-gray-300">₹{bet.bet_amount.toLocaleString()}</td>
-                        <td className="px-8 py-6">
+                        <td className="px-4 py-4 md:px-8 md:py-6 text-sm font-black text-gray-300">₹{bet.bet_amount.toLocaleString()}</td>
+                        <td className="px-4 py-4 md:px-8 md:py-6 whitespace-nowrap">
                           {bet.status === 'pending' ? (
                             <div className="flex items-center gap-2 text-yellow-500">
                               <div className="w-1.5 h-1.5 bg-yellow-500 rounded-full animate-pulse" />
@@ -157,8 +157,8 @@ const MyBets = () => {
                             </div>
                           )}
                         </td>
-                        <td className="px-8 py-6 text-right">
-                          <span className={`text-lg font-black ${bet.win_amount > 0 ? 'text-accent' : 'text-gray-700'}`}>
+                        <td className="px-4 py-4 md:px-8 md:py-6 text-right">
+                          <span className={`text-sm md:text-lg font-black ${bet.win_amount > 0 ? 'text-accent' : 'text-gray-700'}`}>
                             {bet.win_amount > 0 ? `+₹${bet.win_amount.toLocaleString()}` : '—'}
                           </span>
                         </td>
