@@ -12,7 +12,9 @@ import ForgotPassword from './pages/public/ForgotPassword';
 import Signup from './pages/Signup';
 import MyBets from './pages/MyBets';
 import Transactions from './pages/Transactions';
-import Withdraw from './pages/Withdraw';
+import WalletPage from './pages/Wallet';
+import DepositPage from './pages/DepositPage';
+import WithdrawPage from './pages/WithdrawPage';
 import AdminDashboard from './pages/admin/AdminDashboard';
 import ResultsHistory from './pages/ResultsHistory';
 
@@ -78,7 +80,19 @@ const AppContent = () => {
 
       <Route path="/wallet" element={
         <PrivateRoute>
-          <Withdraw />
+          <WalletPage />
+        </PrivateRoute>
+      } />
+
+      <Route path="/deposit" element={
+        <PrivateRoute>
+          <DepositPage />
+        </PrivateRoute>
+      } />
+
+      <Route path="/withdraw" element={
+        <PrivateRoute>
+          <WithdrawPage />
         </PrivateRoute>
       } />
 

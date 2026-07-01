@@ -5,9 +5,9 @@ import api from '../services/api';
 import Navbar from '../components/common/Navbar';
 import CardGrid from '../components/betting/CardGrid';
 import BetModal from '../components/betting/BetModal';
-import DepositModal from '../components/wallet/DepositModal';
 import CountdownTimer from '../components/common/CountdownTimer';
 import CardIcon from '../components/common/CardIcon';
+import { Link } from 'react-router-dom';
 import { toast } from 'react-hot-toast';
 import { Wallet, Trophy, History, TrendingDown, Target, Info } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -18,7 +18,6 @@ const Dashboard = () => {
   const [currentBets, setCurrentBets] = useState([]);
   const [lastResults, setLastResults] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [showDeposit, setShowDeposit] = useState(false);
 
   useEffect(() => {
     fetchCurrentBets();
@@ -98,12 +97,12 @@ const Dashboard = () => {
               <div className="flex flex-col items-center md:items-end text-center md:text-right relative z-10">
                 <p className="text-xs font-bold text-gray-500 uppercase tracking-widest mb-1">Your Balance</p>
                 <h2 className="text-3xl md:text-4xl font-black text-accent mb-4">₹{user.wallet_balance.toLocaleString()}</h2>
-                <button 
-                  onClick={() => setShowDeposit(true)}
+                <Link 
+                  to="/deposit"
                   className="px-6 py-2 bg-white/5 border border-white/10 rounded-xl text-xs font-bold hover:bg-primary transition-all relative z-20 cursor-pointer"
                 >
                   Fast Deposit
-                </button>
+                </Link>
               </div>
             </div>
           </motion.div>
