@@ -4,8 +4,10 @@ import { Toaster } from 'react-hot-toast';
 import { AuthProvider, useAuth } from './context/AuthContext';
 import { SocketProvider } from './context/SocketContext';
 import { NotificationProvider } from './context/NotificationContext';
+import BottomNav from './components/common/BottomNav';
 
 // Pages
+import Hub from './pages/Hub';
 import Dashboard from './pages/Dashboard';
 import Login from './pages/Login';
 import ForgotPassword from './pages/public/ForgotPassword';
@@ -35,7 +37,10 @@ const PrivateRoute = ({ children, adminOnly = false }) => {
   return (
     <SocketProvider>
       <NotificationProvider>
-        {children}
+        <div className="pb-16 md:pb-0 min-h-screen">
+          {children}
+        </div>
+        <BottomNav />
       </NotificationProvider>
     </SocketProvider>
   );
@@ -53,6 +58,12 @@ const AppContent = () => {
       <Route path="/login" element={<Login />} />
       <Route path="/forgot-password" element={<ForgotPassword />} />
       <Route path="/signup" element={<Signup />} />
+      
+      <Route path="/home" element={
+        <PrivateRoute>
+          <Hub />
+        </PrivateRoute>
+      } />
       
       <Route path="/arena" element={
         <PrivateRoute>
