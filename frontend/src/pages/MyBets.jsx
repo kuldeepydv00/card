@@ -83,12 +83,12 @@ const MyBets = () => {
           <div className="overflow-x-auto">
             <table className="w-full text-left">
               <thead>
-                <tr className="text-[10px] font-black text-gray-500 uppercase tracking-[0.2em] border-b border-white/5 bg-white/[0.02] whitespace-nowrap">
-                  <th className="px-4 py-4 md:px-8 md:py-6">Time & Slot</th>
-                  <th className="px-4 py-4 md:px-8 md:py-6">Champion Card</th>
-                  <th className="px-4 py-4 md:px-8 md:py-6">Wager</th>
-                  <th className="px-4 py-4 md:px-8 md:py-6">Outcome</th>
-                  <th className="px-4 py-4 md:px-8 md:py-6 text-right">Settlement</th>
+                <tr className="text-[9px] md:text-[10px] font-black text-gray-500 uppercase tracking-wider md:tracking-[0.2em] border-b border-white/5 bg-white/[0.02] whitespace-nowrap">
+                  <th className="px-2 md:px-8 py-4 md:py-6"><span className="md:hidden">Time</span><span className="hidden md:inline">Time & Slot</span></th>
+                  <th className="px-2 md:px-8 py-4 md:py-6 text-center md:text-left"><span className="md:hidden">Card</span><span className="hidden md:inline">Champion Card</span></th>
+                  <th className="px-2 md:px-8 py-4 md:py-6"><span className="md:hidden">Bet</span><span className="hidden md:inline">Wager</span></th>
+                  <th className="px-2 md:px-8 py-4 md:py-6"><span className="md:hidden">Stat</span><span className="hidden md:inline">Outcome</span></th>
+                  <th className="px-2 md:px-8 py-4 md:py-6 text-right"><span className="md:hidden">Win</span><span className="hidden md:inline">Settlement</span></th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-white/5">
@@ -120,45 +120,45 @@ const MyBets = () => {
                         transition={{ delay: index * 0.05 }}
                         className="hover:bg-white/[0.02] transition-colors group"
                       >
-                        <td className="px-4 py-4 md:px-8 md:py-6">
+                        <td className="px-2 md:px-8 py-4 md:py-6">
                           <div className="flex items-center gap-2 md:gap-4">
                             <div className="hidden md:flex w-10 h-10 bg-background rounded-xl items-center justify-center border border-white/5 text-gray-500">
                               <Clock size={16} />
                             </div>
                             <div className="flex flex-col whitespace-nowrap">
-                              <span className="text-xs md:text-sm font-black text-white">
+                              <span className="text-[10px] md:text-sm font-black text-white">
                                 {new Date(bet.hour_slot).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                               </span>
-                              <span className="text-[10px] font-bold text-gray-500">
+                              <span className="text-[8px] md:text-[10px] font-bold text-gray-500">
                                 {new Date(bet.hour_slot).toLocaleDateString()}
                               </span>
                             </div>
                           </div>
                         </td>
-                        <td className="px-4 py-4 md:px-8 md:py-6">
-                          <CardIcon cardCode={bet.card_code} size="sm" className="group-hover:scale-110 transition-transform" />
+                        <td className="px-2 md:px-8 py-4 md:py-6 flex justify-center md:justify-start">
+                          <CardIcon cardCode={bet.card_code} size="sm" className="group-hover:scale-110 transition-transform scale-75 md:scale-100 origin-center md:origin-left" />
                         </td>
-                        <td className="px-4 py-4 md:px-8 md:py-6 text-sm font-black text-gray-300">₹{bet.bet_amount.toLocaleString()}</td>
-                        <td className="px-4 py-4 md:px-8 md:py-6 whitespace-nowrap">
+                        <td className="px-2 md:px-8 py-4 md:py-6 text-xs md:text-sm font-black text-gray-300">₹{bet.bet_amount.toLocaleString()}</td>
+                        <td className="px-2 md:px-8 py-4 md:py-6 whitespace-nowrap">
                           {bet.status === 'pending' ? (
-                            <div className="flex items-center gap-2 text-yellow-500">
-                              <div className="w-1.5 h-1.5 bg-yellow-500 rounded-full animate-pulse" />
-                              <span className="text-[10px] font-black uppercase tracking-widest">Processing</span>
+                            <div className="flex items-center gap-1.5 md:gap-2 text-yellow-500">
+                              <div className="w-1.5 h-1.5 bg-yellow-500 rounded-full animate-pulse shrink-0" />
+                              <span className="hidden md:inline text-[10px] font-black uppercase tracking-widest">Processing</span>
                             </div>
                           ) : bet.win_amount > 0 ? (
-                            <div className="flex items-center gap-2 text-green-500">
-                              <div className="w-1.5 h-1.5 bg-green-500 rounded-full shadow-[0_0_8px_rgba(34,197,94,0.5)]" />
-                              <span className="text-[10px] font-black uppercase tracking-widest">Successful</span>
+                            <div className="flex items-center gap-1.5 md:gap-2 text-green-500">
+                              <div className="w-1.5 h-1.5 bg-green-500 rounded-full shadow-[0_0_8px_rgba(34,197,94,0.5)] shrink-0" />
+                              <span className="hidden md:inline text-[10px] font-black uppercase tracking-widest">Successful</span>
                             </div>
                           ) : (
-                            <div className="flex items-center gap-2 text-gray-600">
-                              <div className="w-1.5 h-1.5 bg-gray-600 rounded-full" />
-                              <span className="text-[10px] font-black uppercase tracking-widest">Defeated</span>
+                            <div className="flex items-center gap-1.5 md:gap-2 text-gray-600">
+                              <div className="w-1.5 h-1.5 bg-gray-600 rounded-full shrink-0" />
+                              <span className="hidden md:inline text-[10px] font-black uppercase tracking-widest">Defeated</span>
                             </div>
                           )}
                         </td>
-                        <td className="px-4 py-4 md:px-8 md:py-6 text-right">
-                          <span className={`text-sm md:text-lg font-black ${bet.win_amount > 0 ? 'text-accent' : 'text-gray-700'}`}>
+                        <td className="px-2 md:px-8 py-4 md:py-6 text-right">
+                          <span className={`text-xs md:text-lg font-black ${bet.win_amount > 0 ? 'text-accent' : 'text-gray-700'}`}>
                             {bet.win_amount > 0 ? `+₹${bet.win_amount.toLocaleString()}` : '—'}
                           </span>
                         </td>
