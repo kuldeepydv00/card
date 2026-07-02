@@ -23,13 +23,13 @@ const BetModal = ({ cardCode, onClose, onSubmit, balance }) => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="fixed inset-0 z-[100] flex items-start md:items-center justify-center bg-black/80 backdrop-blur-md p-4 overflow-y-auto"
+      className="fixed inset-0 z-[100] flex items-start md:items-center justify-center bg-black/80 backdrop-blur-md p-4 overflow-y-auto overflow-x-hidden"
     >
       <motion.div 
         initial={{ scale: 0.9, y: 20 }}
         animate={{ scale: 1, y: 0 }}
         exit={{ scale: 0.9, y: 20 }}
-        className="glass-card w-full max-w-lg p-6 md:p-10 rounded-[2rem] md:rounded-[3rem] relative my-auto md:my-8"
+        className="glass-card w-full max-w-lg p-6 md:p-10 rounded-[2rem] md:rounded-[3rem] relative my-auto md:my-8 overflow-hidden"
       >
         {/* Background Accent */}
         <div className="absolute top-0 right-0 w-32 h-32 bg-primary/20 blur-[60px] rounded-full -mr-16 -mt-16" />
