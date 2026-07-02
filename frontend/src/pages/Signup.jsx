@@ -88,7 +88,7 @@ const Signup = () => {
         icon: '🎉',
         style: { borderRadius: '10px', background: '#333', color: '#fff' }
       });
-      navigate('/home');
+      navigate('/arena');
     } catch (error) {
       toast.error(error.response?.data?.error || 'Invalid OTP. Please try again.');
       // Clear OTP on failure
