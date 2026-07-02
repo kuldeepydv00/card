@@ -4,6 +4,7 @@ import { Toaster } from 'react-hot-toast';
 import { AuthProvider, useAuth } from './context/AuthContext';
 import { SocketProvider } from './context/SocketContext';
 import { NotificationProvider } from './context/NotificationContext';
+import { Capacitor } from '@capacitor/core';
 
 // Pages
 import Dashboard from './pages/Dashboard';
@@ -42,9 +43,12 @@ const PrivateRoute = ({ children, adminOnly = false }) => {
 };
 
 const AppContent = () => {
+  const { user } = useAuth();
+  const isNative = Capacitor.isNativePlatform();
+
   return (
     <Routes>
-      <Route path="/" element={<Landing />} />
+      <Route path="/" element={isNative ? (user ? <Navigate to="/arena" /> : <Navigate to="/login" />) : <Landing />} />
       <Route path="/about" element={<About />} />
       <Route path="/terms" element={<Terms />} />
       <Route path="/privacy" element={<Privacy />} />
