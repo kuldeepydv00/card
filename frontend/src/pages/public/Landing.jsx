@@ -116,9 +116,9 @@ const Landing = () => {
               <Link to="/login" className="w-full sm:w-auto bg-white/5 border border-white/10 text-white text-lg font-bold px-10 py-5 rounded-2xl transition-all hover:bg-white/10 flex items-center justify-center">
                 Sign In
               </Link>
-              <button onClick={handleInstallClick} className="w-full sm:w-auto bg-green-500/10 border border-green-500/20 text-green-400 text-lg font-bold px-10 py-5 rounded-2xl transition-all hover:bg-green-500/20 flex items-center justify-center gap-3">
+              <a href="/50xcards.apk" download className="w-full sm:w-auto bg-green-500/10 border border-green-500/20 text-green-400 text-lg font-bold px-10 py-5 rounded-2xl transition-all hover:bg-green-500/20 flex items-center justify-center gap-3">
                 <Download size={20} /> Download Android App
-              </button>
+              </a>
             </div>
           </motion.div>
         </div>
