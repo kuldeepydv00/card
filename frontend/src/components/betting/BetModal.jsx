@@ -29,10 +29,10 @@ const BetModal = ({ cardCode, onClose, onSubmit, balance }) => {
         initial={{ scale: 0.9, y: 20 }}
         animate={{ scale: 1, y: 0 }}
         exit={{ scale: 0.9, y: 20 }}
-        className="glass-card w-full max-w-lg p-5 md:p-10 rounded-3xl md:rounded-[3rem] relative my-auto md:my-8 overflow-hidden"
+        className="glass-card w-full max-w-lg p-5 md:p-10 rounded-3xl md:rounded-[3rem] relative mt-16 mb-auto md:my-8 overflow-hidden"
       >
         {/* Background Accent */}
-        <div className="absolute top-0 right-0 w-32 h-32 bg-primary/20 blur-[60px] rounded-full -mr-16 -mt-16" />
+        <div className="absolute top-0 right-0 w-32 h-32 bg-primary/20 blur-[60px] rounded-full -mr-16 -mt-16 pointer-events-none z-0" />
 
         <div className="flex justify-between items-start mb-4 md:mb-10">
           <div>
@@ -41,7 +41,7 @@ const BetModal = ({ cardCode, onClose, onSubmit, balance }) => {
             </h3>
             <p className="text-gray-500 text-[10px] md:text-sm mt-1 hidden md:block">Confirming wagers for champion card</p>
           </div>
-          <button onClick={onClose} className="w-8 h-8 md:w-10 md:h-10 shrink-0 bg-white/5 rounded-full flex items-center justify-center text-gray-500 hover:text-white hover:bg-white/10 transition-all">
+          <button type="button" onClick={onClose} className="w-8 h-8 md:w-10 md:h-10 shrink-0 bg-white/5 rounded-full flex items-center justify-center text-gray-500 hover:text-white hover:bg-white/10 transition-all relative z-10">
             <X size={18} />
           </button>
         </div>
