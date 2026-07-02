@@ -74,7 +74,7 @@ const Dashboard = () => {
             animate={{ opacity: 1, x: 0 }}
             className="lg:col-span-2 flex flex-col gap-6"
           >
-            <div className="glass-card rounded-[2rem] p-8 flex flex-col md:flex-row items-center justify-between gap-8 relative overflow-hidden group">
+            <div className="glass-card rounded-[2rem] p-5 md:p-8 flex flex-col md:flex-row items-center justify-between gap-5 md:gap-8 relative overflow-hidden group">
               <div className="absolute top-0 right-0 p-8 opacity-[0.03] group-hover:scale-110 transition-transform duration-700 pointer-events-none z-0">
                 <Target size={200} />
               </div>
@@ -86,7 +86,7 @@ const Dashboard = () => {
                   </div>
                   <span className="text-xs font-bold text-gray-500 uppercase tracking-[0.2em]">Play</span>
                 </div>
-                <h1 className="text-3xl md:text-4xl font-black mb-4 premium-gradient-text">Today is a good day</h1>
+                <h1 className="text-2xl md:text-4xl font-black mb-2 md:mb-4 premium-gradient-text">Today is a good day</h1>
                 <p className="text-gray-400 text-sm max-w-md leading-relaxed">
                   Try your luck and pick the winning card to multiply your stake. Fortune favors the bold!
                 </p>
@@ -96,7 +96,7 @@ const Dashboard = () => {
 
               <div className="flex flex-col items-center md:items-end text-center md:text-right relative z-10">
                 <p className="text-xs font-bold text-gray-500 uppercase tracking-widest mb-1">Your Balance</p>
-                <h2 className="text-3xl md:text-4xl font-black text-accent mb-4">₹{user.wallet_balance.toLocaleString()}</h2>
+                <h2 className="text-2xl md:text-4xl font-black text-accent mb-3 md:mb-4">₹{user.wallet_balance.toLocaleString()}</h2>
                 <Link 
                   to="/deposit"
                   className="px-6 py-2 bg-white/5 border border-white/10 rounded-xl text-xs font-bold hover:bg-primary transition-all relative z-20 cursor-pointer"
