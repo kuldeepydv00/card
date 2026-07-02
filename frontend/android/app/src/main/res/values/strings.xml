@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">50xcards</string>
+    <string name="title_activity_main">50xcards</string>
+    <string name="package_name">com.fiftyxcards.app</string>
+    <string name="custom_url_scheme">com.fiftyxcards.app</string>
+</resources>

@@ -10,6 +10,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@capacitor/android": "^8.4.1",
+    "@capacitor/core": "^8.4.1",
     "@hookform/resolvers": "^3.3.2",
     "axios": "^1.6.0",
     "framer-motion": "^10.16.4",
@@ -24,6 +26,7 @@
     "zod": "^3.22.4"
   },
   "devDependencies": {
+    "@capacitor/cli": "^8.4.1",
     "@types/react": "^18.2.15",
     "@types/react-dom": "^18.2.7",
     "@vitejs/plugin-react": "^4.0.3",
